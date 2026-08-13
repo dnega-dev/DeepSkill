@@ -7,6 +7,16 @@ description: Use when harvesting architecture knowledge from public repositories
 
 Harvest repository knowledge without treating generated wiki text as primary evidence.
 
+## Quick start
+
+Run the bundled no-dependency client:
+
+```bash
+python3 scripts/fetch_wiki.py owner/repository
+```
+
+It writes `structure.md`, `contents.md`, and `metadata.json` under `deepwiki_corpus/owner__repository`. Use `--output-dir` to choose another destination. The client uses the official unauthenticated Streamable HTTP endpoint and fails explicitly on transport, protocol, or tool errors.
+
 ## Workflow
 
 1. Define the repository list and the question each brief must answer.
