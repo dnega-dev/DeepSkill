@@ -64,6 +64,10 @@ Sixty more like these live in the [knowledge base](./knowledge/INDEX.md).
 
 ---
 
+## Agent compatibility
+
+DeepSkill uses the portable `SKILL.md` convention: a folder containing YAML frontmatter, operating instructions, and optional scripts or references. The collection is designed for skills-aware coding agents including Claude Code, Codex, Cursor, OpenCode, Hermes Agent, and compatible agent harnesses. Installation paths and trigger behavior vary by host, so review a host's skill-loading documentation before copying a folder.
+
 ## Use it
 
 **With a skills-aware agent (Claude Code, etc.):** copy any skill folder into your skills directory —
