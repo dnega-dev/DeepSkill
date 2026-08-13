@@ -21,3 +21,9 @@ jobs:
           python-version: "3.12"
       - run: python scripts/validate_skills.py
       - run: python -m unittest discover -s tests -v
+      - name: Smoke-test DeepWiki MCP
+        run: |
+          python skills/deepwiki-harvester/scripts/fetch_wiki.py modelcontextprotocol/servers --output-dir /tmp/deepwiki-smoke
+          test -s /tmp/deepwiki-smoke/structure.md
+          test -s /tmp/deepwiki-smoke/contents.md
+          test -s /tmp/deepwiki-smoke/metadata.json
