@@ -38,7 +38,7 @@ The result is two things in one repo:
 
 | Skill | What it distills | Sources |
 |---|---|---|
-| [**deepwiki-harvester**](./skills/deepwiki-harvester/) | The engine behind this repo — harvest any public repo's wiki via DeepWiki's free MCP endpoint, then run parallel multi-repo campaigns. Ships the [`fetch_wiki.py`](./skills/deepwiki-harvester/scripts/fetch_wiki.py) script. | the method itself |
+| [**deepwiki-harvester**](./skills/deepwiki-harvester/) | The engine behind this repo — harvest any public repo's wiki via DeepWiki's free MCP endpoint, then run parallel multi-repo campaigns. Ships the [`fetch_wiki.py`](./skills/deepwiki-harvester/scripts/fetch_wiki.py) standard-library client for DeepWiki's official Streamable HTTP MCP endpoint. | the method itself |
 | [**agent-skills-engineering**](./skills/agent-skills-engineering/) | Authoring, triggering, validating & improving skills — progressive disclosure, CSO trigger discipline, TDD-for-docs, hooks vs skills vs rules, anti-rationalization, plugin/marketplace ecosystems. | anthropics/skills, superpowers, claude-code, everything-claude-code, claude-plugins-official, knowledge-work-plugins, cursor/community-plugins, ECC |
 | [**agent-orchestration-patterns**](./skills/agent-orchestration-patterns/) | How agent frameworks execute & coordinate — BSP graph execution, reducers, pause/resume HITL models, tool-calling loops, memory taxonomies, 13-tool prompt conventions, real coding-agent harnesses. | LangChain, LangGraph, AutoGPT, Agent Zero, Dify, Langflow, OpenHands, opencode, openclaw, open-agents, Fabric, deepclaude, +2 |
 | [**agent-memory-systems**](./skills/agent-memory-systems/) | Durable cross-session memory — additive extraction with supersession-by-linkage, hybrid RRF vs adaptive-divisor fusion, weighted-Dijkstra graph traversal, Ebbinghaus retention. | mem0, agentmemory |
@@ -64,6 +64,10 @@ Sixty more like these live in the [knowledge base](./knowledge/INDEX.md).
 
 ---
 
+## Agent compatibility
+
+DeepSkill uses the portable `SKILL.md` convention: a folder containing YAML frontmatter, operating instructions, and optional scripts or references. The collection is designed for skills-aware coding agents including Claude Code, Codex, Cursor, OpenCode, Hermes Agent, and compatible agent harnesses. Installation paths and trigger behavior vary by host, so review a host's skill-loading documentation before copying a folder.
+
 ## Use it
 
 **With a skills-aware agent (Claude Code, etc.):** copy any skill folder into your skills directory —
@@ -77,11 +81,11 @@ Each [`SKILL.md`](./skills) is self-contained with YAML frontmatter (`name`, `de
 
 **As a reference:** just read. Start at the [knowledge index](./knowledge/INDEX.md) and jump to any repo's brief, or read a skill top-to-bottom for the synthesized cross-repo view.
 
-**Harvest your own:** the [`deepwiki-harvester`](./skills/deepwiki-harvester/) skill + [`fetch_wiki.py`](./skills/deepwiki-harvester/scripts/fetch_wiki.py) let you point the same pipeline at any public repos you care about. No API key, no auth.
+**Harvest your own:** run the bundled no-dependency client against any public GitHub repository:
 
 ```bash
 python3 skills/deepwiki-harvester/scripts/fetch_wiki.py langchain-ai/langgraph
-# → deepwiki_corpus/langchain-ai__langgraph/{structure.md, contents.md}
+# → deepwiki_corpus/langchain-ai__langgraph/{structure.md,contents.md,metadata.json}
 ```
 
 ---
